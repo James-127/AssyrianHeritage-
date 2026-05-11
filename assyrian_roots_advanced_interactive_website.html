@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assyrian Roots | Interactive Educational Website</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --panel: rgba(255,255,255,0.075);
+      --panel2: rgba(255,255,255,0.115);
+      --line: rgba(255,255,255,0.14);
+      --text: #ffffff;
+      --muted: #cbd5e1;
+      --soft: #94a3b8;
+      --gold: #fbbf24;
+      --gold2: #fde68a;
+      --blue: #2563eb;
+      --red: #ef4444;
+      --green: #22c55e;
+      --dark: #020617;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(37,99,235,0.30), transparent 30%),
+        radial-gradient(circle at 85% 12%, rgba(251,191,36,0.25), transparent 26%),
+        radial-gradient(circle at 45% 100%, rgba(127,29,29,0.35), transparent 34%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+
+    .container {
+      width: min(1220px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(7, 17, 31, 0.86);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
+      background: var(--gold);
+      color: #111827;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 19px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.055);
+      padding: 5px;
+      border-radius: 999px;
+    }
+
+    .nav-links a {
+      padding: 9px 12px;
+      color: var(--muted);
+      border-radius: 999px;
+      font-size: 13px;
+      transition: 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: white;
+      background: rgba(255,255,255,0.12);
+    }
+
+    section { padding: 84px 0; }
+
+    h1 {
+      font-size: clamp(44px, 7vw, 86px);
+      line-height: 0.94;
+      margin: 0;
+      letter-spacing: -0.065em;
+    }
+
+    h2 {
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1;
+      margin: 0;
+      letter-spacing: -0.05em;
+    }
+
+    h3 {
+      font-size: 25px;
+      line-height: 1.13;
+      margin: 0;
+      letter-spacing: -0.025em;
+    }
+
+    p { line-height: 1.65; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 42px;
+      align-items: center;
+      padding: 105px 0 85px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border: 1px solid rgba(251,191,36,0.35);
+      border-radius: 999px;
+      background: rgba(251,191,36,0.12);
+      color: var(--gold2);
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    .lead {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 19px;
+      margin: 24px 0 0;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      border: 0;
+      border-radius: 18px;
+      padding: 14px 19px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .button.primary {
+      background: var(--gold);
+      color: #111827;
+      box-shadow: 0 18px 60px rgba(251,191,36,0.18);
+    }
+
+    .button.secondary {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid var(--line);
+      color: white;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+
+    .card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 28px;
+      padding: 25px;
+      box-shadow: 0 28px 80px rgba(0,0,0,0.22);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-card {
+      min-height: 445px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top, rgba(251,191,36,0.20), transparent 45%),
+        linear-gradient(135deg, rgba(37,99,235,0.26), transparent);
+      pointer-events: none;
+    }
+
+    .hero-card > * { position: relative; }
+
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 13px;
+      margin-top: 18px;
+    }
+
+    .path-item {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.11);
+      border-radius: 20px;
+      padding: 16px;
+      font-weight: 900;
+    }
+
+    .yellow-box {
+      background: var(--gold);
+      color: #111827;
+      margin-top: 18px;
+      border-radius: 24px;
+      padding: 22px;
+      font-weight: 900;
+      font-size: 24px;
+      line-height: 1.18;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 900;
+      margin: 0 0 12px;
+    }
+
+    .section-intro {
+      max-width: 820px;
+      color: var(--muted);
+      font-size: 18px;
+      margin: 18px 0 0;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid.two { grid-template-columns: repeat(2, 1fr); }
+    .grid.three { grid-template-columns: repeat(3, 1fr); }
+    .grid.four { grid-template-columns: repeat(4, 1fr); }
+
+    .mt { margin-top: 36px; }
+
+    .gold { color: var(--gold); }
+    .muted { color: var(--muted); }
+    .small { color: var(--soft); font-size: 14px; }
+
+    .interactive-wrap {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      gap: 22px;
+      margin-top: 36px;
+      align-items: start;
+    }
+
+    .choice-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .choice {
+      width: 100%;
+      text-align: left;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: white;
+      border-radius: 22px;
+      padding: 17px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .choice:hover { background: rgba(255,255,255,0.13); }
+    .choice.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #111827;
+    }
+
+    .choice-date {
+      opacity: 0.76;
+      font-weight: 900;
+      margin: 0 0 5px;
+      font-size: 14px;
+    }
+
+    .choice-title {
+      margin: 0;
+      font-weight: 900;
+      font-size: 21px;
+      line-height: 1.16;
+    }
+
+    .tag {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 13px;
+      font-weight: 900;
+      border: 1px solid rgba(147,197,253,0.25);
+      background: rgba(37,99,235,0.17);
+      color: #bfdbfe;
+    }
+
+    .warning-tag {
+      border-color: rgba(248,113,113,0.28);
+      background: rgba(239,68,68,0.15);
+      color: #fecaca;
+    }
+
+    .reflection {
+      margin-top: 22px;
+      padding: 17px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,0.18);
+      border-radius: 22px;
+    }
+
+    .map-layout {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .heritage-map {
+      min-height: 600px;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(148,163,184,0.10), rgba(37,99,235,0.16)),
+        radial-gradient(circle at center, rgba(251,191,36,0.14), transparent 45%);
+    }
+
+    .map-stage {
+      position: absolute;
+      inset: 30px;
+      border-radius: 34px;
+      border: 1px solid rgba(251,191,36,0.23);
+      background: rgba(0,0,0,0.18);
+      overflow: hidden;
+    }
+
+    .map-label {
+      position: absolute;
+      color: rgba(255,255,255,0.18);
+      font-size: 50px;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      user-select: none;
+    }
+
+    .map-label.iraq { top: 54%; left: 48%; }
+    .map-label.turkey { top: 16%; left: 18%; }
+    .map-label.iran { top: 28%; right: 8%; }
+    .map-label.syria { top: 45%; left: 10%; }
+
+    .river {
+      position: absolute;
+      width: 6px;
+      height: 78%;
+      background: rgba(147,197,253,0.22);
+      border-radius: 999px;
+      top: 12%;
+    }
+
+    .river.one { left: 45%; transform: rotate(-6deg); }
+    .river.two { left: 57%; transform: rotate(9deg); }
+
+    .region-marker, .village-marker {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      border: 0;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
+    .region-marker {
+      min-width: 112px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: var(--gold);
+      color: #111827;
+      box-shadow: 0 0 0 0 rgba(251,191,36,0.45);
+      animation: pulse 1.9s infinite;
+    }
+
+    .village-marker {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #bfdbfe;
+      color: #0f172a;
+      box-shadow: 0 0 0 0 rgba(147,197,253,0.35);
+      animation: bluePulse 1.9s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(251,191,36,0.45); }
+      72% { box-shadow: 0 0 0 16px rgba(251,191,36,0); }
+      100% { box-shadow: 0 0 0 0 rgba(251,191,36,0); }
+    }
+
+    @keyframes bluePulse {
+      0% { box-shadow: 0 0 0 0 rgba(147,197,253,0.35); }
+      72% { box-shadow: 0 0 0 13px rgba(147,197,253,0); }
+      100% { box-shadow: 0 0 0 0 rgba(147,197,253,0); }
+    }
+
+    .map-caption {
+      position: absolute;
+      left: 22px;
+      bottom: 18px;
+      color: var(--soft);
+      font-size: 13px;
+    }
+
+    .back-btn {
+      border: 1px solid var(--line);
+      color: white;
+      background: rgba(255,255,255,0.08);
+      padding: 10px 13px;
+      border-radius: 999px;
+      cursor: pointer;
+      margin-bottom: 14px;
+      display: none;
+    }
+
+    .back-btn.show { display: inline-block; }
+
+    .info-row {
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.07);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .photo-card {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .photo {
+      height: 170px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-weight: 900;
+      color: rgba(255,255,255,0.92);
+      background:
+        linear-gradient(135deg, rgba(37,99,235,0.58), rgba(251,191,36,0.42)),
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.25), transparent 20%);
+    }
+
+    .photo.saint { background: linear-gradient(135deg, rgba(251,191,36,0.48), rgba(30,64,175,0.55)); }
+    .photo.king { background: linear-gradient(135deg, rgba(127,29,29,0.72), rgba(251,191,36,0.42)); }
+    .photo.singer { background: linear-gradient(135deg, rgba(147,51,234,0.55), rgba(37,99,235,0.45)); }
+    .photo.culture { background: linear-gradient(135deg, rgba(22,101,52,0.55), rgba(251,191,36,0.45)); }
+
+    .photo-content {
+      padding: 20px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .tab {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.075);
+      color: white;
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: 800;
+      transition: 0.2s;
+    }
+
+    .tab.active, .tab:hover {
+      background: var(--gold);
+      color: #111827;
+      border-color: var(--gold);
+    }
+
+    .search-box {
+      margin-top: 28px;
+      max-width: 650px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 16px 18px;
+    }
+
+    .search-box input {
+      border: 0;
+      outline: 0;
+      width: 100%;
+      background: transparent;
+      color: white;
+      font-size: 16px;
+    }
+
+    .phrase {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.09);
+      border-radius: 20px;
+      padding: 15px;
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .audio-btn {
+      border: 1px solid var(--line);
+      background: transparent;
+      color: white;
+      border-radius: 999px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    .audio-btn:hover { background: rgba(255,255,255,0.12); }
+
+    .quiz-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 22px;
+      margin-top: 36px;
+      align-items: start;
+    }
+
+    .question { margin-bottom: 18px; }
+
+    .answers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .answer {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.07);
+      color: white;
+      border-radius: 18px;
+      padding: 14px;
+      text-align: left;
+      cursor: pointer;
+      font-weight: 850;
+    }
+
+    .answer:hover { background: rgba(255,255,255,0.12); }
+    .answer.correct {
+      border-color: rgba(34,197,94,0.75);
+      background: rgba(34,197,94,0.18);
+    }
+    .answer.wrong {
+      border-color: rgba(239,68,68,0.75);
+      background: rgba(239,68,68,0.18);
+    }
+
+    .score-card {
+      position: sticky;
+      top: 94px;
+    }
+
+    .score {
+      font-size: 64px;
+      font-weight: 900;
+      line-height: 1;
+      margin: 16px 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      text-align: center;
+      color: var(--soft);
+      padding: 28px 0;
+      background: rgba(0,0,0,0.14);
+    }
+
+    @media (max-width: 1020px) {
+      .nav-links { display: none; }
+      .hero, .interactive-wrap, .map-layout, .quiz-layout {
+        grid-template-columns: 1fr;
+      }
+      .grid.four { grid-template-columns: repeat(2, 1fr); }
+      .grid.three { grid-template-columns: repeat(2, 1fr); }
+      .score-card { position: static; }
+    }
+
+    @media (max-width: 650px) {
+      .grid.four, .grid.three, .grid.two, .path-grid, .answers {
+        grid-template-columns: 1fr;
+      }
+      section { padding: 64px 0; }
+      .hero { padding-top: 72px; }
+      .heritage-map { min-height: 520px; }
+      .region-marker { min-width: 88px; font-size: 12px; }
+      .map-label { font-size: 34px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a href="#home" class="logo">
+        <span class="logo-mark">𒀭</span>
+        <span>Assyrian Roots</span>
+      </a>
+      <div class="nav-links">
+        <a href="#genocides">Genocides</a>
+        <a href="#villages">Villages</a>
+        <a href="#empire">Empire</a>
+        <a href="#church">Church</a>
+        <a href="#language">Language</a>
+        <a href="#people">People</a>
+        <a href="#quiz">Quiz</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="container hero">
+      <div>
+        <div class="pill">✦ Interactive educational Assyrian heritage website</div>
+        <h1>Assyrian history, villages, faith, language and culture.</h1>
+        <p class="lead">
+          A creative learning website for students, youth groups and families. It explores Assyrian history from the ancient empire until today, including genocide memory, villages and tribes, the Assyrian Church of the East, language, worship, culture and famous Assyrian people.
+        </p>
+        <div class="buttons">
+          <a class="button primary" href="#genocides">Explore genocide timeline →</a>
+          <a class="button secondary" href="#villages">Open village map</a>
+          <a class="button secondary" href="#quiz">Take quiz</a>
+        </div>
+      </div>
+
+      <div class="card hero-card">
+        <p class="gold"><strong>Main website sections</strong></p>
+        <div class="path-grid">
+          <div class="path-item">🕯️ Genocide timeline</div>
+          <div class="path-item">📍 Villages & tribes map</div>
+          <div class="path-item">🏛️ Empire to today</div>
+          <div class="path-item">⛪ Church history</div>
+          <div class="path-item">🗣️ Language explorer</div>
+          <div class="path-item">🎶 Culture & people</div>
+        </div>
+        <div class="yellow-box">
+          Built to preserve memory, teach clearly, and make Assyrian heritage engaging for the next generation.
+        </div>
+      </div>
+    </section>
+
+    <section id="genocides">
+      <div class="container">
+        <p class="eyebrow">Interactive Timeline</p>
+        <h2>Genocides and massacres in Assyrian memory</h2>
+        <p class="section-intro">
+          This section teaches remembrance carefully and respectfully. Click each event to read a simple educational summary. More sources, survivor stories and images can be added later.
+        </p>
+        <div class="interactive-wrap">
+          <div class="choice-list" id="genocideButtons"></div>
+          <div class="card" id="genocideContent"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="villages">
+      <div class="container">
+        <p class="eyebrow">Interactive Map</p>
+        <h2>Tribes, regions and villages</h2>
+        <p class="section-intro">
+          Start zoomed out with major Assyrian regions and tribal areas. Click a region to zoom into example villages and learn about history, dialect and identity.
+        </p>
+
+        <div class="map-layout">
+          <div class="card heritage-map">
+            <div class="map-stage" id="mapStage">
+              <div class="map-label turkey">Turkey</div>
+              <div class="map-label iran">Iran</div>
+              <div class="map-label iraq">Iraq</div>
+              <div class="map-label syria">Syria</div>
+              <div class="river one"></div>
+              <div class="river two"></div>
+              <p class="map-caption" id="mapCaption">Zoomed out: click a region such as Tyari, Tkhuma, Jilu, Baz, Tur Abdin, Barwar, Nineveh or Urmia.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <button class="back-btn" id="backMap" onclick="resetMap()">← Back to all regions</button>
+            <p class="eyebrow" id="mapEyebrow">Selected Region</p>
+            <h3 id="mapTitle">Assyrian Regions</h3>
+            <p class="section-intro" id="mapText" style="font-size:17px;">
+              Click a marker on the map to view tribe or region history, dialect notes and example villages.
+            </p>
+            <div id="mapDetails"></div>
+          </div>
+        </div>
+
+        <p class="small" style="margin-top:18px;">
+          Note: Village lists are examples only. The full website can later add many more villages from Iran, Iraq, Turkey and Syria, with family stories and verified sources.
+        </p>
+      </div>
+    </section>
+
+    <section id="empire">
+      <div class="container">
+        <p class="eyebrow">Interactive Timeline</p>
+        <h2>From the Assyrian Empire until today</h2>
+        <p class="section-intro">
+          This timeline gives students a big-picture view of Assyrian history, from ancient cities and kings to Christian Mesopotamia, modern displacement and diaspora identity.
+        </p>
+        <div class="interactive-wrap">
+          <div class="choice-list" id="empireButtons"></div>
+          <div class="card" id="empireContent"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="church">
+      <div class="container">
+        <p class="eyebrow">Church History</p>
+        <h2>Assyrian Church of the East timeline</h2>
+        <p class="section-intro">
+          Learn how the Assyrian Church of the East developed through apostolic memory, Syriac worship, schools, missions, patriarchs, persecution and diaspora communities.
+        </p>
+        <div class="interactive-wrap">
+          <div class="choice-list" id="churchButtons"></div>
+          <div class="card" id="churchContent"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="worship">
+      <div class="container">
+        <p class="eyebrow">Christian Heritage & Worship</p>
+        <h2>Saints, martyrs, liturgy and worship life</h2>
+        <p class="section-intro">
+          This interactive section can be used for youth lessons or church education. The photo spaces are placeholders so you can later add real images with permission or proper public-domain sources.
+        </p>
+
+        <div class="filter-tabs" id="worshipTabs"></div>
+        <div class="grid four mt" id="worshipGrid"></div>
+      </div>
+    </section>
+
+    <section id="language">
+      <div class="container">
+        <p class="eyebrow">Language Explorer</p>
+        <h2>Differences between Assyrian linguistic traditions</h2>
+        <p class="section-intro">
+          Compare spoken Assyrian dialects and Classical Syriac. Click each card to see how language connects to region, church life, family identity and diaspora.
+        </p>
+
+        <div class="interactive-wrap">
+          <div class="choice-list" id="languageButtons"></div>
+          <div class="card" id="languageContent"></div>
+        </div>
+
+        <div class="grid two mt">
+          <div class="card">
+            <h3>Basic phrase cards</h3>
+            <div class="phrase">
+              <div><strong>Peace be with you</strong><br><span class="gold">Shlama lokhun</span></div>
+              <button class="audio-btn" onclick="fakeAudio()">Audio</button>
+            </div>
+            <div class="phrase">
+              <div><strong>Thank you</strong><br><span class="gold">Basima</span></div>
+              <button class="audio-btn" onclick="fakeAudio()">Audio</button>
+            </div>
+            <div class="phrase">
+              <div><strong>God bless you</strong><br><span class="gold">Alaha mbarekh lokh</span></div>
+              <button class="audio-btn" onclick="fakeAudio()">Audio</button>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Future audio idea</h3>
+            <p class="muted">
+              Add recordings for each dialect: Tyari, Urmian, Nineveh Plains, Turoyo and Classical Syriac chant. Students could click and hear the differences.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="people">
+      <div class="container">
+        <p class="eyebrow">Historic & Famous People</p>
+        <h2>Kings, queens, saints, leaders and artists</h2>
+        <p class="section-intro">
+          Filter the cards by category. Each card includes a photo placeholder that can later be replaced with a real image.
+        </p>
+
+        <div class="filter-tabs" id="peopleTabs"></div>
+
+        <div class="search-box">
+          🔎
+          <input id="peopleSearch" type="text" placeholder="Search Ashurbanipal, Shamiram, Mar Narsai, singers..." />
+        </div>
+
+        <div class="grid four mt" id="peopleGrid"></div>
+      </div>
+    </section>
+
+    <section id="culture">
+      <div class="container">
+        <p class="eyebrow">Culture & Traditions</p>
+        <h2>Assyrian life, memory and identity</h2>
+        <p class="section-intro">
+          Culture is more than history in books. It is carried through weddings, food, music, dance, clothing, church life, village memory, language and family stories.
+        </p>
+
+        <div class="grid four mt" id="cultureGrid"></div>
+      </div>
+    </section>
+
+    <section id="quiz">
+      <div class="container">
+        <p class="eyebrow">Interactive Quiz</p>
+        <h2>Assyrian heritage quiz</h2>
+        <p class="section-intro">
+          A simple student quiz that updates instantly. More questions can be added for school or youth group use.
+        </p>
+        <div class="quiz-layout">
+          <div id="quizQuestions"></div>
+          <div class="card score-card">
+            <p class="eyebrow">Your Score</p>
+            <div class="score"><span id="score">0</span>/8</div>
+            <p class="muted">Use this for classroom learning, youth nights, or a fun family heritage activity.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="next">
+      <div class="container">
+        <div class="card">
+          <p class="eyebrow">Next Steps</p>
+          <h2>How to make this website even better</h2>
+          <div class="grid two mt">
+            <div class="card">
+              <h3>Add real media</h3>
+              <p class="muted">Add real photos of villages, churches, saints, martyrs, ancient reliefs, singers and community events. Use public-domain images or images you have permission to use.</p>
+            </div>
+            <div class="card">
+              <h3>Add sources</h3>
+              <p class="muted">Add a reference list for each page so the website becomes useful for students and trustworthy for teachers.</p>
+            </div>
+            <div class="card">
+              <h3>Add village pages</h3>
+              <p class="muted">Each village can have its own page with location, dialect, church history, family surnames, photos and oral stories.</p>
+            </div>
+            <div class="card">
+              <h3>Add voice recordings</h3>
+              <p class="muted">Record elders saying phrases in different dialects so young people can hear and preserve the language.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Assyrian Roots — Interactive educational heritage website prototype
+  </footer>
+
+  <script>
+    const genocides = [
+      {
+        date: "1894–1896",
+        title: "Hamidian massacres",
+        tag: "Late Ottoman period",
+        text: "Many Christian communities in the Ottoman Empire suffered violence during this period, including Armenian, Assyrian/Syriac and other Christian populations. This belongs to the wider memory of insecurity and persecution before the First World War.",
+        question: "How did repeated violence shape Christian Assyrian communities before 1915?"
+      },
+      {
+        date: "1914–1918",
+        title: "Sayfo / Assyrian Genocide",
+        tag: "World War I",
+        text: "Sayfo, meaning sword, refers to the genocide and mass violence against Assyrian/Syriac Christians during the late Ottoman period, especially during World War I. Many communities from Hakkari, Tur Abdin, Urmia and surrounding regions were killed, displaced or forced to flee.",
+        question: "Why is remembrance important for communities whose villages and churches were destroyed or emptied?"
+      },
+      {
+        date: "1915",
+        title: "Hakkari displacement",
+        tag: "Homeland loss",
+        text: "The Assyrians of Hakkari, including tribal communities such as Tyari, Tkhuma, Jilu, Baz and others, experienced violence, displacement and loss of ancestral mountain villages. Many survivors moved through Iran, Iraq and later into diaspora communities.",
+        question: "How does losing a homeland affect language, identity and family memory?"
+      },
+      {
+        date: "1915–1918",
+        title: "Urmia and Salamas suffering",
+        tag: "Iran region",
+        text: "Assyrians in the Urmia and Salamas regions suffered massacres, famine, disease and displacement during World War I. These communities had important churches, schools, printing activity and cultural life before the destruction.",
+        question: "How can a website preserve the memory of places where strong community life once existed?"
+      },
+      {
+        date: "1933",
+        title: "Simele massacre",
+        tag: "Iraq",
+        text: "The Simele massacre is remembered as a major tragedy for Assyrians in Iraq. It deeply affected Assyrian political, national and community memory in the modern period.",
+        question: "How did events like Simele shape modern Assyrian national consciousness?"
+      },
+      {
+        date: "2014 onwards",
+        title: "ISIS attacks and displacement",
+        tag: "Modern persecution",
+        text: "ISIS attacks in Iraq and Syria caused major displacement for Assyrians and other Christian communities, especially in areas such as the Nineveh Plains and Khabur region. Churches, homes and heritage sites were damaged or lost.",
+        question: "What does survival look like when communities are displaced again in the modern world?"
+      }
+    ];
+
+    const empireTimeline = [
+      {
+        date: "c. 2500–2000 BC",
+        title: "Early Ashur",
+        tag: "City beginnings",
+        text: "Ashur developed as one of the oldest centres of Assyrian identity. It became a religious, political and cultural heart of ancient Assyria.",
+        question: "Why do cities matter so much in the memory of ancient peoples?"
+      },
+      {
+        date: "c. 1365–1050 BC",
+        title: "Middle Assyrian period",
+        tag: "State formation",
+        text: "Assyria grew stronger as a kingdom, developing institutions, military organisation, law and regional power.",
+        question: "How did Assyria move from a city-state into a wider kingdom?"
+      },
+      {
+        date: "911–609 BC",
+        title: "Neo-Assyrian Empire",
+        tag: "Empire",
+        text: "The Neo-Assyrian Empire became one of the most powerful empires of the ancient Near East. Kings built palaces, roads, cities, libraries and administrative systems.",
+        question: "How did Assyrian government, writing and architecture influence the ancient world?"
+      },
+      {
+        date: "612–609 BC",
+        title: "Fall of Nineveh and imperial collapse",
+        tag: "Turning point",
+        text: "The fall of Nineveh and the collapse of the empire did not mean the complete disappearance of the people. Assyrian identity continued in different forms across Mesopotamia.",
+        question: "Why is it important to distinguish the fall of an empire from the disappearance of a people?"
+      },
+      {
+        date: "1st–7th centuries AD",
+        title: "Christian Assyrian / Syriac Mesopotamia",
+        tag: "Christian identity",
+        text: "Christianity spread in Mesopotamia, and Syriac became a major language of worship, poetry, theology and learning. The Church of the East became an important institution.",
+        question: "How did Christianity reshape Assyrian identity and literature?"
+      },
+      {
+        date: "7th–14th centuries",
+        title: "Islamic and Mongol periods",
+        tag: "Survival",
+        text: "Assyrian Christian communities continued through changing political powers. Monasteries, schools and manuscripts helped preserve theology, language and memory.",
+        question: "How do minority communities preserve identity under changing empires?"
+      },
+      {
+        date: "1800s–1900s",
+        title: "Modern nationalism, persecution and migration",
+        tag: "Modern era",
+        text: "Assyrian communities faced new political pressures, persecution and displacement. Modern Assyrian identity was shaped by village memory, church life, genocide, leadership and diaspora.",
+        question: "What connects ancient history to modern Assyrian identity?"
+      },
+      {
+        date: "Today",
+        title: "Global Assyrian diaspora",
+        tag: "Present day",
+        text: "Assyrians now live across the Middle East, Australia, Europe, North America and beyond. Language preservation, church communities, cultural events and online education are major parts of identity today.",
+        question: "How can young Assyrians preserve identity while living outside the homeland?"
+      }
+    ];
+
+    const churchTimeline = [
+      {
+        date: "1st century tradition",
+        title: "Apostolic memory of Mar Addai and Mar Mari",
+        tag: "Beginnings",
+        text: "The Church of the East remembers its early Christian roots through the missionary tradition of Mar Addai and Mar Mari. This connects the Church's worship life to early Christianity in Mesopotamia.",
+        question: "How does apostolic memory shape the identity of a church?"
+      },
+      {
+        date: "3rd–4th centuries",
+        title: "Early Christian communities in Mesopotamia",
+        tag: "Formation",
+        text: "Christian communities grew in the Persian and Mesopotamian world. Syriac became a major Christian language for prayer, hymns and teaching.",
+        question: "Why was Syriac so important for Christian education and worship?"
+      },
+      {
+        date: "410",
+        title: "Synod of Seleucia-Ctesiphon",
+        tag: "Organisation",
+        text: "This council helped organise the Church of the East under a recognised hierarchy in the Persian Empire, giving structure to bishops, dioceses and church life.",
+        question: "Why does church organisation matter for survival and unity?"
+      },
+      {
+        date: "5th–7th centuries",
+        title: "Schools of Edessa and Nisibis",
+        tag: "Learning",
+        text: "The School of Nisibis became one of the major centres of Syriac Christian learning. Writers and teachers shaped biblical interpretation, hymnology and theology.",
+        question: "How did schools help preserve faith and knowledge?"
+      },
+      {
+        date: "7th–13th centuries",
+        title: "Mission across Asia",
+        tag: "Expansion",
+        text: "The Church of the East expanded through Persia, Central Asia, India and China. This made it one of the most geographically widespread Christian traditions of the medieval period.",
+        question: "What does this show about the missionary character of the Church of the East?"
+      },
+      {
+        date: "14th–19th centuries",
+        title: "Hardship, mountain communities and patriarchs",
+        tag: "Survival",
+        text: "Assyrian Church communities survived through difficult political and social conditions. Patriarchs, bishops, priests, deacons and village churches held communities together.",
+        question: "How did village churches protect identity?"
+      },
+      {
+        date: "20th century",
+        title: "Genocide, displacement and diaspora church life",
+        tag: "Modern suffering",
+        text: "The Church was deeply affected by genocide, war and migration. In diaspora, churches became centres for worship, language, family life and cultural preservation.",
+        question: "How did church life help Assyrians rebuild after displacement?"
+      },
+      {
+        date: "Today",
+        title: "Assyrian Church of the East worldwide",
+        tag: "Diaspora",
+        text: "Today the Assyrian Church of the East exists across the Middle East and diaspora. Its worship, Holy Qurbana, Syriac language and saints remain central to Assyrian Christian identity.",
+        question: "How can young people understand ancient worship in a modern world?"
+      }
+    ];
+
+    const regions = [
+      {
+        id: "tyari",
+        name: "Tyari",
+        country: "Turkey / Hakkari",
+        x: "38%",
+        y: "25%",
+        history: "Tyari is one of the best-known Assyrian mountain tribal regions of Hakkari. It is remembered for strong village identity, church life, courage, oral memory and displacement during the early 20th century.",
+        dialect: "Eastern Sureth, with Tyari regional features.",
+        villages: [
+          { name: "Ashitha", x: "42%", y: "34%", note: "Often remembered as a major Tyari village centre." },
+          { name: "Lizán", x: "36%", y: "42%", note: "Associated with Tyari village memory and mountain life." },
+          { name: "Chamba", x: "54%", y: "38%", note: "Example village marker for Tyari heritage." },
+          { name: "Zawitha", x: "47%", y: "55%", note: "Example village marker; replace with verified local data later." }
+        ]
+      },
+      {
+        id: "tkhuma",
+        name: "Tkhuma",
+        country: "Turkey / Hakkari",
+        x: "43%",
+        y: "22%",
+        history: "Tkhuma was a historic Assyrian tribal region in the Hakkari mountains. Its memory is preserved through families, churches, dialect, migration stories and oral tradition.",
+        dialect: "Eastern Sureth, Tkhuma regional speech.",
+        villages: [
+          { name: "Tkhuma village 1", x: "39%", y: "39%", note: "Placeholder for a verified Tkhuma village." },
+          { name: "Tkhuma village 2", x: "50%", y: "33%", note: "Add real village name and story later." },
+          { name: "Tkhuma village 3", x: "55%", y: "49%", note: "Add real dialect notes later." }
+        ]
+      },
+      {
+        id: "jilu",
+        name: "Jilu",
+        country: "Turkey / Hakkari",
+        x: "46%",
+        y: "27%",
+        history: "Jilu is another Assyrian mountain tribal region remembered for village identity, faith, family memory and migration after violence and displacement.",
+        dialect: "Eastern Sureth, Jilu regional features.",
+        villages: [
+          { name: "Jilu village 1", x: "39%", y: "41%", note: "Placeholder village marker." },
+          { name: "Jilu village 2", x: "50%", y: "36%", note: "Add verified village history later." },
+          { name: "Jilu village 3", x: "58%", y: "52%", note: "Add church and family memory later." }
+        ]
+      },
+      {
+        id: "baz",
+        name: "Baz",
+        country: "Turkey / Hakkari",
+        x: "35%",
+        y: "30%",
+        history: "Baz is a historic Assyrian tribal region connected with mountain life, church identity and diaspora memory. Families from Baz preserve traditions through oral history and dialect.",
+        dialect: "Eastern Sureth, Baz regional speech.",
+        villages: [
+          { name: "Baz village 1", x: "37%", y: "36%", note: "Placeholder marker for Baz." },
+          { name: "Baz village 2", x: "50%", y: "45%", note: "Add verified village name later." },
+          { name: "Baz village 3", x: "60%", y: "56%", note: "Add local history later." }
+        ]
+      },
+      {
+        id: "turabdin",
+        name: "Tur Abdin",
+        country: "Turkey / Syria border region",
+        x: "23%",
+        y: "32%",
+        history: "Tur Abdin is a historic Syriac Christian region known for ancient monasteries, churches, villages and deep liturgical heritage. It is especially associated with Syriac Orthodox tradition, while still belonging to the broader Assyrian/Syriac heritage landscape.",
+        dialect: "Turoyo and related Syriac/Neo-Aramaic traditions.",
+        villages: [
+          { name: "Midyat", x: "44%", y: "40%", note: "Major town associated with Syriac Christian heritage." },
+          { name: "Mardin", x: "35%", y: "55%", note: "Historic city connected to Syriac Christian life." },
+          { name: "Aynwardo", x: "55%", y: "50%", note: "Important village in Tur Abdin memory." },
+          { name: "Hah", x: "62%", y: "38%", note: "Known for ancient church heritage." }
+        ]
+      },
+      {
+        id: "barwar",
+        name: "Barwar",
+        country: "Iraq",
+        x: "48%",
+        y: "45%",
+        history: "Barwar is a northern Iraq region with many Assyrian villages, churches and family lineages. It is remembered strongly in diaspora communities through village names, dialect and family roots.",
+        dialect: "Eastern Sureth, Barwar regional features.",
+        villages: [
+          { name: "Doreh", x: "42%", y: "41%", note: "Example Barwar village marker." },
+          { name: "Hayis", x: "52%", y: "36%", note: "Example village marker; add verified details later." },
+          { name: "Mangeesh", x: "57%", y: "51%", note: "Village connected to northern Iraq Christian heritage." },
+          { name: "Kani Balavi", x: "46%", y: "58%", note: "Example marker for Barwar village memory." }
+        ]
+      },
+      {
+        id: "nineveh",
+        name: "Nineveh Plains",
+        country: "Iraq",
+        x: "55%",
+        y: "52%",
+        history: "The Nineveh Plains are central to modern Assyrian Christian identity in Iraq. They include historic towns and villages with ancient churches, dialects, traditions and recent displacement memory.",
+        dialect: "Various Eastern Neo-Aramaic dialects, including Sureth-related speech.",
+        villages: [
+          { name: "Alqosh", x: "38%", y: "36%", note: "Historic town with deep Christian heritage." },
+          { name: "Tel Keppe", x: "48%", y: "48%", note: "Historic Assyrian/Chaldean town in the Nineveh region." },
+          { name: "Bakhdida/Qaraqosh", x: "60%", y: "52%", note: "Major Syriac Christian town in the Nineveh Plains." },
+          { name: "Karamlesh", x: "53%", y: "63%", note: "Historic Christian town near Mosul." }
+        ]
+      },
+      {
+        id: "urmia",
+        name: "Urmia",
+        country: "Iran",
+        x: "66%",
+        y: "28%",
+        history: "Urmia in north-west Iran was a major Assyrian Christian centre with villages, churches, schools, printing, missions and cultural life. It suffered greatly during the First World War.",
+        dialect: "Urmian Sureth and related Eastern Assyrian speech.",
+        villages: [
+          { name: "Gulpashan", x: "42%", y: "40%", note: "Example Urmia-area village marker." },
+          { name: "Gawar", x: "54%", y: "35%", note: "Region associated with Assyrian settlement and memory." },
+          { name: "Salamas", x: "62%", y: "52%", note: "Important wider region connected to Assyrian history." },
+          { name: "Urmia city", x: "48%", y: "58%", note: "Major Assyrian cultural and church centre." }
+        ]
+      }
+    ];
+
+    const worshipItems = [
+      { category: "Saints", name: "Mar Narsai", role: "Teacher, poet and theologian", text: "Associated with the School of Nisibis and Syriac theological poetry.", photo: "saint" },
+      { category: "Saints", name: "Mar Ephrem", role: "Syriac poet and saint", text: "Known for hymns and poetic theology that taught the faith through beauty.", photo: "saint" },
+      { category: "Saints", name: "Mar Isaac of Nineveh", role: "Spiritual writer", text: "Remembered for writings on mercy, prayer, repentance and the spiritual life.", photo: "saint" },
+      { category: "Martyrs", name: "Mar Benyamin Shimun", role: "Patriarch and martyr in Assyrian memory", text: "A major modern Assyrian Church leader remembered during a period of war and displacement.", photo: "saint" },
+      { category: "Worship", name: "Holy Qurbana", role: "Eucharistic worship", text: "The central worship of the Church, shaped by Scripture, prayer, offering and communion.", photo: "saint" },
+      { category: "Worship", name: "Anaphora of Addai and Mari", role: "Ancient Eucharistic prayer", text: "One of the most important liturgical treasures of the Church of the East.", photo: "saint" },
+      { category: "Worship", name: "Chant and Deacons", role: "Sound of worship", text: "Chanting, responses and deacons help carry the prayer of the Church across generations.", photo: "saint" },
+      { category: "Martyrs", name: "Sayfo Martyrs", role: "Community remembrance", text: "Represents the faithful and communities who suffered during genocide and persecution.", photo: "saint" }
+    ];
+
+    const languageItems = [
+      {
+        title: "Classical Syriac",
+        date: "Liturgical and literary language",
+        tag: "Church language",
+        text: "Classical Syriac is the traditional literary and liturgical language used in many prayers, hymns, manuscripts and theological texts. It connects Assyrian Christian worship to ancient Syriac Christianity.",
+        question: "Where is it heard? In liturgy, hymns, manuscripts, prayers and theological writings."
+      },
+      {
+        title: "Eastern Sureth",
+        date: "Modern spoken Assyrian",
+        tag: "Everyday language",
+        text: "Eastern Sureth is spoken by many Assyrians from regions such as Iraq, Iran and Hakkari-descended communities. It has many regional dialects, including Tyari, Urmian, Jilu, Baz, Barwar and others.",
+        question: "Where is it heard? In families, churches, community events, music and diaspora homes."
+      },
+      {
+        title: "Urmian dialect",
+        date: "North-west Iran",
+        tag: "Regional dialect",
+        text: "Urmian Assyrian speech is connected to the Urmia region in Iran, which had important Assyrian schools, churches and printing activity.",
+        question: "Why does it matter? It preserves the sound and memory of a major Assyrian cultural region."
+      },
+      {
+        title: "Tyari / Hakkari dialects",
+        date: "Mountain regions",
+        tag: "Tribal dialects",
+        text: "Hakkari tribal dialects, such as Tyari, Tkhuma, Jilu and Baz, preserve mountain village identity and family history. Many features survived through diaspora speech.",
+        question: "Why does it matter? Dialect can tell a family where their people came from."
+      },
+      {
+        title: "Turoyo",
+        date: "Tur Abdin region",
+        tag: "Western Neo-Aramaic tradition",
+        text: "Turoyo is associated especially with Syriac Christian communities from Tur Abdin and surrounding areas. It is connected to a different but related Syriac heritage stream.",
+        question: "Why does it matter? It shows the diversity of Assyrian/Syriac language heritage."
+      }
+    ];
+
+    const people = [
+      { category: "Kings & Queens", name: "Ashurbanipal", role: "Assyrian king", text: "Remembered for the royal library at Nineveh and the preservation of ancient texts.", photo: "king" },
+      { category: "Kings & Queens", name: "Sennacherib", role: "Assyrian king", text: "Known for major building works, especially at Nineveh, and his role in ancient history.", photo: "king" },
+      { category: "Kings & Queens", name: "Esarhaddon", role: "Assyrian king", text: "A major Neo-Assyrian ruler remembered in the history of empire and administration.", photo: "king" },
+      { category: "Kings & Queens", name: "Shamiram / Semiramis", role: "Legendary queen figure", text: "A famous queen figure in Near Eastern memory and later legend, often connected with Assyrian tradition.", photo: "king" },
+      { category: "Saints & Church", name: "Mar Narsai", role: "Theologian and poet", text: "A major Syriac Christian teacher associated with Nisibis and theological poetry.", photo: "saint" },
+      { category: "Saints & Church", name: "Mar Isaac of Nineveh", role: "Spiritual writer", text: "Known for writings on prayer, mercy and repentance.", photo: "saint" },
+      { category: "Modern Leaders", name: "Mar Benyamin Shimun", role: "Patriarch", text: "Remembered as an important Assyrian Church leader during war and displacement.", photo: "saint" },
+      { category: "Modern Leaders", name: "Agha Petros", role: "Military and national figure", text: "Remembered in modern Assyrian history and national memory.", photo: "king" },
+      { category: "Modern Leaders", name: "Naum Faiq", role: "Writer and educator", text: "A major voice in modern Assyrian cultural awakening, journalism and identity.", photo: "king" },
+      { category: "Singers & Artists", name: "Linda George", role: "Singer", text: "One of the most recognised modern Assyrian singers, especially in diaspora communities.", photo: "singer" },
+      { category: "Singers & Artists", name: "Sargon Gabriel", role: "Singer", text: "A famous Assyrian singer known for songs that shaped modern Assyrian music culture.", photo: "singer" },
+      { category: "Singers & Artists", name: "Evin Agassi", role: "Singer", text: "A beloved Assyrian singer whose music is widely known across Assyrian communities.", photo: "singer" }
+    ];
+
+    const culture = [
+      { name: "Khigga and dance", text: "Group dance connects people at weddings, parties, festivals and community celebrations.", photo: "culture" },
+      { name: "Weddings", text: "Assyrian weddings often include family honour, music, dancing, church blessing and cultural clothing.", photo: "culture" },
+      { name: "Food", text: "Food carries family memory through dishes, gatherings, fasting traditions and hospitality.", photo: "culture" },
+      { name: "Traditional clothing", text: "Clothing can show regional identity, mountain heritage, colours, patterns and family pride.", photo: "culture" },
+      { name: "Akitu", text: "Assyrian New Year connects modern identity with ancient Mesopotamian memory.", photo: "culture" },
+      { name: "Village stories", text: "Stories about villages, churches, mountains and migration keep family history alive.", photo: "culture" },
+      { name: "Church feasts", text: "Feasts, fasting, saints and liturgical seasons shape the rhythm of Assyrian Christian life.", photo: "culture" },
+      { name: "Language at home", text: "Speaking Assyrian at home helps protect identity across generations in diaspora.", photo: "culture" }
+    ];
+
+    const quiz = [
+      { q: "What does Sayfo mean?", options: ["Sword", "River", "King", "Village"], answer: "Sword" },
+      { q: "Which ancient city is strongly connected with Ashurbanipal's library?", options: ["Nineveh", "Rome", "Athens", "Carthage"], answer: "Nineveh" },
+      { q: "What is Sureth?", options: ["A spoken Assyrian language", "A type of crown", "A river", "A palace"], answer: "A spoken Assyrian language" },
+      { q: "Which region is famous for ancient Syriac Christian monasteries?", options: ["Tur Abdin", "London", "Athens", "Carthage"], answer: "Tur Abdin" },
+      { q: "What is Holy Qurbana?", options: ["Eucharistic worship", "A dance", "A king", "A village wall"], answer: "Eucharistic worship" },
+      { q: "What is Akitu commonly known as?", options: ["Assyrian New Year", "A church bell", "A military title", "A manuscript page"], answer: "Assyrian New Year" },
+      { q: "Which region was a major Assyrian centre in Iran?", options: ["Urmia", "Rome", "Paris", "Athens"], answer: "Urmia" },
+      { q: "Why are dialects important?", options: ["They preserve regional and family identity", "They erase history", "They are only modern slang", "They have no connection to heritage"], answer: "They preserve regional and family identity" }
+    ];
+
+    let activeGenocide = 0;
+    let activeEmpire = 0;
+    let activeChurch = 0;
+    let activeLanguage = 0;
+    let activeWorshipCategory = "All";
+    let activePeopleCategory = "All";
+    let currentRegion = null;
+    let selectedAnswers = {};
+
+    function renderInteractive(buttonId, contentId, data, activeIndex, setFunctionName, warning=false) {
+      const buttons = document.getElementById(buttonId);
+      const content = document.getElementById(contentId);
+
+      buttons.innerHTML = data.map((item, index) => `
+        <button class="choice ${index === activeIndex ? "active" : ""}" onclick="${setFunctionName}(${index})">
+          <p class="choice-date">${item.date}</p>
+          <p class="choice-title">${item.title}</p>
+        </button>
+      `).join("");
+
+      const item = data[activeIndex];
+      content.innerHTML = `
+        <span class="tag ${warning ? "warning-tag" : ""}">${item.tag}</span>
+        <h3 style="font-size:40px; margin-top:20px;">${item.title}</h3>
+        <p class="section-intro" style="font-size:18px;">${item.text}</p>
+        <div class="reflection">
+          <strong>Reflection question</strong>
+          <p>${item.question}</p>
+        </div>
+      `;
+    }
+
+    function setGenocide(index) {
+      activeGenocide = index;
+      renderInteractive("genocideButtons", "genocideContent", genocides, activeGenocide, "setGenocide", true);
+    }
+
+    function setEmpire(index) {
+      activeEmpire = index;
+      renderInteractive("empireButtons", "empireContent", empireTimeline, activeEmpire, "setEmpire");
+    }
+
+    function setChurch(index) {
+      activeChurch = index;
+      renderInteractive("churchButtons", "churchContent", churchTimeline, activeChurch, "setChurch");
+    }
+
+    function setLanguage(index) {
+      activeLanguage = index;
+      renderInteractive("languageButtons", "languageContent", languageItems, activeLanguage, "setLanguage");
+    }
+
+    function renderMapRegions() {
+      const stage = document.getElementById("mapStage");
+      currentRegion = null;
+      document.getElementById("backMap").classList.remove("show");
+      document.getElementById("mapEyebrow").textContent = "Selected Region";
+      document.getElementById("mapTitle").textContent = "Assyrian Regions";
+      document.getElementById("mapText").textContent = "Click a marker on the map to view tribe or region history, dialect notes and example villages.";
+      document.getElementById("mapDetails").innerHTML = "";
+      document.getElementById("mapCaption").textContent = "Zoomed out: click a region such as Tyari, Tkhuma, Jilu, Baz, Tur Abdin, Barwar, Nineveh or Urmia.";
+
+      const existing = stage.querySelectorAll(".region-marker,.village-marker");
+      existing.forEach(el => el.remove());
+
+      regions.forEach((region, index) => {
+        const btn = document.createElement("button");
+        btn.className = "region-marker";
+        btn.style.left = region.x;
+        btn.style.top = region.y;
+        btn.textContent = region.name;
+        btn.onclick = () => zoomRegion(index);
+        stage.appendChild(btn);
+      });
+    }
+
+    function zoomRegion(index) {
+      const region = regions[index];
+      currentRegion = region;
+      const stage = document.getElementById("mapStage");
+      const existing = stage.querySelectorAll(".region-marker,.village-marker");
+      existing.forEach(el => el.remove());
+
+      document.getElementById("backMap").classList.add("show");
+      document.getElementById("mapEyebrow").textContent = region.country;
+      document.getElementById("mapTitle").textContent = region.name;
+      document.getElementById("mapText").textContent = region.history;
+      document.getElementById("mapCaption").textContent = "Zoomed in: click a village marker to read its short note.";
+
+      document.getElementById("mapDetails").innerHTML = `
+        <div class="info-row"><strong>Dialect:</strong><br>${region.dialect}</div>
+        <div class="info-row"><strong>Example villages:</strong><br>${region.villages.map(v => v.name).join(", ")}</div>
+      `;
+
+      region.villages.forEach((village, i) => {
+        const btn = document.createElement("button");
+        btn.className = "village-marker";
+        btn.style.left = village.x;
+        btn.style.top = village.y;
+        btn.textContent = i + 1;
+        btn.onclick = () => selectVillage(i);
+        stage.appendChild(btn);
+      });
+    }
+
+    function selectVillage(index) {
+      if (!currentRegion) return;
+      const village = currentRegion.villages[index];
+      document.getElementById("mapDetails").innerHTML = `
+        <div class="info-row"><strong>Dialect:</strong><br>${currentRegion.dialect}</div>
+        <div class="info-row"><strong>Selected village:</strong><br>${village.name}</div>
+        <div class="info-row"><strong>Village note:</strong><br>${village.note}</div>
+      `;
+    }
+
+    function resetMap() {
+      renderMapRegions();
+    }
+
+    function renderWorship() {
+      const categories = ["All", ...new Set(worshipItems.map(i => i.category))];
+      document.getElementById("worshipTabs").innerHTML = categories.map(cat => `
+        <button class="tab ${cat === activeWorshipCategory ? "active" : ""}" onclick="setWorshipCategory('${cat}')">${cat}</button>
+      `).join("");
+
+      const list = activeWorshipCategory === "All" ? worshipItems : worshipItems.filter(i => i.category === activeWorshipCategory);
+      document.getElementById("worshipGrid").innerHTML = list.map(item => `
+        <div class="card photo-card">
+          <div class="photo ${item.photo}">Photo of ${item.name}</div>
+          <div class="photo-content">
+            <p class="eyebrow" style="margin-bottom:8px;">${item.category}</p>
+            <h3>${item.name}</h3>
+            <p class="gold"><strong>${item.role}</strong></p>
+            <p class="muted">${item.text}</p>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function setWorshipCategory(cat) {
+      activeWorshipCategory = cat;
+      renderWorship();
+    }
+
+    function renderPeople() {
+      const categories = ["All", ...new Set(people.map(p => p.category))];
+      document.getElementById("peopleTabs").innerHTML = categories.map(cat => `
+        <button class="tab ${cat === activePeopleCategory ? "active" : ""}" onclick="setPeopleCategory('${cat}')">${cat}</button>
+      `).join("");
+
+      const search = document.getElementById("peopleSearch").value.toLowerCase();
+      let list = activePeopleCategory === "All" ? people : people.filter(p => p.category === activePeopleCategory);
+      list = list.filter(p => `${p.name} ${p.role} ${p.text} ${p.category}`.toLowerCase().includes(search));
+
+      document.getElementById("peopleGrid").innerHTML = list.map(p => `
+        <div class="card photo-card">
+          <div class="photo ${p.photo}">Photo of ${p.name}</div>
+          <div class="photo-content">
+            <p class="eyebrow" style="margin-bottom:8px;">${p.category}</p>
+            <h3>${p.name}</h3>
+            <p class="gold"><strong>${p.role}</strong></p>
+            <p class="muted">${p.text}</p>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function setPeopleCategory(cat) {
+      activePeopleCategory = cat;
+      renderPeople();
+    }
+
+    function renderCulture() {
+      document.getElementById("cultureGrid").innerHTML = culture.map(c => `
+        <div class="card photo-card">
+          <div class="photo ${c.photo}">Photo of ${c.name}</div>
+          <div class="photo-content">
+            <h3>${c.name}</h3>
+            <p class="muted">${c.text}</p>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function renderQuiz() {
+      document.getElementById("quizQuestions").innerHTML = quiz.map((item, index) => `
+        <div class="card question">
+          <h3>${index + 1}. ${item.q}</h3>
+          <div class="answers">
+            ${item.options.map(option => {
+              let cls = "answer";
+              if (selectedAnswers[index] === option && option === item.answer) cls += " correct";
+              if (selectedAnswers[index] === option && option !== item.answer) cls += " wrong";
+              return `<button class="${cls}" onclick="answerQuiz(${index}, '${option.replace(/'/g, "\\'")}')">${option}</button>`;
+            }).join("")}
+          </div>
+        </div>
+      `).join("");
+
+      const score = quiz.reduce((total, item, index) => selectedAnswers[index] === item.answer ? total + 1 : total, 0);
+      document.getElementById("score").textContent = score;
+    }
+
+    function answerQuiz(index, answer) {
+      selectedAnswers[index] = answer;
+      renderQuiz();
+    }
+
+    function fakeAudio() {
+      alert("Audio placeholder: later you can add real Assyrian voice recordings here.");
+    }
+
+    document.getElementById("peopleSearch").addEventListener("input", renderPeople);
+
+    renderInteractive("genocideButtons", "genocideContent", genocides, activeGenocide, "setGenocide", true);
+    renderInteractive("empireButtons", "empireContent", empireTimeline, activeEmpire, "setEmpire");
+    renderInteractive("churchButtons", "churchContent", churchTimeline, activeChurch, "setChurch");
+    renderInteractive("languageButtons", "languageContent", languageItems, activeLanguage, "setLanguage");
+    renderMapRegions();
+    renderWorship();
+    renderPeople();
+    renderCulture();
+    renderQuiz();
+  </script>
+</body>
+</html>
